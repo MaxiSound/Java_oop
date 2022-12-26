@@ -1,5 +1,7 @@
 package Cat;
 
-public class Wild {
-    
+public interface Wild {
+    void hide();
+
+    void bite();
 }
