@@ -1,5 +1,7 @@
 package Cat;
 
-public class Pet {
-    
+public interface Pet {
+    void feed();
+
+    void play();
 }
