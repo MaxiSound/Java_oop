@@ -3,7 +3,7 @@ package Cat;
 import java.util.ArrayList;
 import java.util.Set;
 
-public class Animal {
+public abstract class Animal {
     public Animal() {
     }
 
