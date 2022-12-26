@@ -1,5 +1,6 @@
 package Familytree;
 
-public class Relationship {
-    
+public enum Relationship {
+    parent,
+    children,
 }
