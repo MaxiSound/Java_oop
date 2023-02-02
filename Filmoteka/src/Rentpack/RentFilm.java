@@ -48,15 +48,16 @@ public class RentFilm {
         String a;
         String b;
         System.out.println("Введите номер телефона арендатора: ");
-        Scanner input = new Scanner(System.in);
-        a = input.nextLine();
-        for (Person person : pb) {
-            if (person.getPhoneNumber().contains(a)) {
-                rentFilm.setPhonenumber(person.getPhoneNumber());
+        try (Scanner input = new Scanner(System.in)) {
+            a = input.nextLine();
+            for (Person person : pb) {
+                if (person.getPhoneNumber().contains(a)) {
+                    rentFilm.setPhonenumber(person.getPhoneNumber());
+                }
             }
+            System.out.println("Введите название фильма: ");
+            b = input.nextLine();
         }
-        System.out.println("Введите название фильма: ");
-        b = input.nextLine();
         for (Film film : fb) {
             if (film.getName().contains(b)) {
                 rentFilm.setRentedFilm(film.getName());
@@ -74,15 +75,16 @@ public class RentFilm {
         boolean flag = true;
         while (flag) {
             System.out.println("Вы хотите добавить новую запись об аренде фильма? 1 - Да, 2 - Нет");
-            Scanner input = new Scanner(System.in);
-            int a = input.nextInt();
-            if (a == 1) {
-                record.add(createRentFilm(pb, fb, admin));
-            } else if (a == 2) {
-                System.out.println("База записей сохранена");
-                flag = false;
-            } else {
-                System.out.println("Введите 1 - Да  или 2 - Нет");
+            try (Scanner input = new Scanner(System.in)) {
+                int a = input.nextInt();
+                if (a == 1) {
+                    record.add(createRentFilm(pb, fb, admin));
+                } else if (a == 2) {
+                    System.out.println("База записей сохранена");
+                    flag = false;
+                } else {
+                    System.out.println("Введите 1 - Да  или 2 - Нет");
+                }
             }
         }
         setRentFilmArrayList(record);
@@ -90,13 +92,13 @@ public class RentFilm {
 
     public void outputToTxtFile(String filename, ArrayList<RentFilm> record) throws IOException {
         filename = filename + ".txt";
-        FileWriter fileWriter = new FileWriter(filename);
-
-        for (RentFilm x : record) {
-            fileWriter.write(x.toString());
-            fileWriter.write("\n");
+        try (FileWriter fileWriter = new FileWriter(filename)) {
+            for (RentFilm x : record) {
+                fileWriter.write(x.toString());
+                fileWriter.write("\n");
+            }
+            fileWriter.flush();
         }
-        fileWriter.flush();
     }
 
     public ArrayList<RentFilm> inputFile(String filename, ArrayList<Person> pb) throws IOException {
