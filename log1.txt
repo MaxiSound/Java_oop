@@ -1,0 +1,2 @@
+февр. 02, 2023 2:17:29 PM presenter.Presenter start
+INFO: Первое число 2,000
