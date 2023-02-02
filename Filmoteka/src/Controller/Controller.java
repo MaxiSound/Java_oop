@@ -34,8 +34,9 @@ public class Controller {
                     1 - Дополнить базу фильмов
                     2 - Дополнить базу людей
                     3 - Дополнить базу записей об аренде фильмов""");
-            Scanner input = new Scanner(System.in);
-            a = input.nextInt();
+            try (Scanner input = new Scanner(System.in)) {
+                a = input.nextInt();
+            }
             if (a == 1) {
                 filmbase.fillRecord(fb);
                 filmbase.outputToTxtFile("База фильмов", filmbase.getrecordfilms());
