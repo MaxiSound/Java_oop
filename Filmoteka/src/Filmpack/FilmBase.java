@@ -108,7 +108,7 @@ public class FilmBase {
 
             film.setDirector(parsing[2]);
 
-            film.setFile(FileExtention.valueOf(parsing[3]));
+            film.setFile(FileExtention.valueOf(parsing[3]))
 
             output.add(film);
         }
