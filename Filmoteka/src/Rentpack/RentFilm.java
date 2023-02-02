@@ -103,18 +103,19 @@ public class RentFilm {
         String[] parsing;
         ArrayList<RentFilm> output = new ArrayList<>();
         java.io.File file = new File(filename + ".txt");
-        Scanner scanner = new Scanner(file);
-        while (scanner.hasNextLine()) {
-            parsing = scanner.nextLine().split(",");
-            RentFilm rentFilm = new RentFilm();
-            rentFilm.setPhonenumber(parsing[0]);
-            rentFilm.setRentedFilm(parsing[1]);
-            for (Person x : pb) {
-                if (x.getName().contains(parsing[2])) {
-                    rentFilm.setServiceAdmin(x);
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNextLine()) {
+                parsing = scanner.nextLine().split(",");
+                RentFilm rentFilm = new RentFilm();
+                rentFilm.setPhonenumber(parsing[0]);
+                rentFilm.setRentedFilm(parsing[1]);
+                for (Person x : pb) {
+                    if (x.getName().contains(parsing[2])) {
+                        rentFilm.setServiceAdmin(x);
+                    }
                 }
+                output.add(rentFilm);
             }
-            output.add(rentFilm);
         }
         return output;
     }
